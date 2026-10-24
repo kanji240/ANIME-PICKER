@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIME PICKER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="opening">
+    <img src="images/star-rosd.png" alt="星" class="logo-image">
+    <h1>ANIME PICKER</h1>
+  </div>
+
+  <main class="home">
+    <p class="small-title delay-1">YOUR NEXT ANIME</p>
+
+    <h2 class="delay-2">次に観る作品を、<br><span>見つけよう。</span></h2>
+
+    <p class="description delay-3">
+      迷ってしまう夜も、<br>きっと<span class="special">特別な1本</span>に出会える。
+    </p>
+
+    <button class="delay-4">なにを見る？ →</button>
+  </main>
+
+  <section class="genre"> 
+    <!-- 検索欄 -->
+    <section class="search">
+      <input
+        type="text"
+        id="animeSearch"
+        placeholder="アニメのタイトルを検索..."
+       >
+      <button id="searchButton">▷</button>
+    </section>
+    <!-- 検索結果 -->
+  <div id="searchResult" style="display: none;">
+  <h3 id="searchTitle"></h3>
+  <img id="searchImage" src="" alt="">
+  </div>
+
+       <!-- ここから下はボタン類 -->
+    <!-- <button class="all-anime-button">全アニメ</button> -->
+    <button class="all-anime-button">恋愛</button>
+    <button>アクション</button>
+    <button>ギャグ</button>
+    <button>SF</button>
+    <button>異世界</button>
+    <button>感動</button>
+
+  <!-- 抽選ボタン -->
+    <button id="drawButton" class="draw-button">全アニメを抽選</button>
+    <div id="result">
+      <h4 id="resultTitle"></h4>
+      <img id="resultImage" src="" alt="">
+    </div>
+  </section>  
+  
+
+<section class="anime-list">
+  <h5><span class="selected-genre"></span>の作品</h5>
+  <div class="anime-cards"></div>
+</section>
+
+
+
+<!---スクリプトタグは必ず後--->
+  <script src="script.js"></script>
+</body>
+</html>
+     
