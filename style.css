@@ -136,7 +136,7 @@ body {
 @keyframes tittleAppear {
   from {
     opacity: 0;
-    letter-spacing: 5px;
+    letter-spacing: 15px;
   }
   to {
     opacity: 1;
@@ -248,7 +248,7 @@ body {
   color: #ffffff;
   caret-color: #ffffff;
   border: 1px solid #3e3553;
-  border-radius: 10px;
+  border-radius: 30px;
   font-size: 16px;
 }
 
@@ -261,8 +261,8 @@ body {
 /* 検索ボタン */
 .genre .search button {
   flex: 0 0 60px;
-  width: 60px;
-  height: 52px;
+  width: 55px;
+  height: 50px;
   padding: 0;
   box-sizing: border-box;
   background: #292139;
