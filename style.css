@@ -1,0 +1,680 @@
+/* 画面全体の横方向へのスクロールがなくせる */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* *ページ内の全要素を対象にする記号 */
+* {
+  box-sizing: border-box; 
+}
+
+/* ANIME PICKERのみだし */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: rgb(15, 3, 18);
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+/* オープニング画面 */
+.opening {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ロゴマーク */
+.logo-image {
+  width: 200px;
+  max-width: 80%;
+  height: auto;
+  display: block;
+  /* margin: o auto 10px; */
+  animation: logoAppear 2.3s ease-out  forwards;
+}
+
+/* 動きの始まりと終わりを決める */
+@keyframes logoAppear {
+  5% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* タイトル */
+.opening h1 {
+  font-size: clamp(24px, 7vw, 40px);
+  letter-spacing: 5px;
+  margin: 0;
+  opacity: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, sans-serif;
+  font-weight: 300px;
+  white-space: nowrap;
+  animation: tittleAppear 2.3s ease-out 1 forwards;
+}
+
+.opening.fade-out {
+  animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* メイン画面の文章を順番に表示 */
+.home.show-content > * {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.home.show-content > *:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.home.show-content > *:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.home.show-content > *:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.home.show-content > *:nth-child(4) {
+  animation-delay: 0.9s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* トップ画面 */
+.home {
+  opacity: 0;
+  animation: homeAppear 1.5s ease-out 0.5s forwards;
+}
+@keyframes homeAppear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* 見出しの下に置くタイトル */
+.small-title {
+  font-size: 15px;
+  letter-spacing: 5px;
+  color: #a78bfa;
+  padding-top: 30px;
+  
+}
+
+@keyframes tittleAppear {
+  from {
+    opacity: 0;
+    letter-spacing: 10px;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 5px;
+  }
+}
+
+/* メインのキャッチコピー */
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  opacity: 0;
+  animation: homeAppear 1s ease-out 1.5s forwards;
+}
+
+.home h2 {
+  font-size: 32px;
+  font-size: clamp(24px 5vw 32px);
+  line-height: 2;
+  letter-spacing: 1px;
+  padding-top: 30px;
+}
+
+.home h2 span {
+  color: #9689da;
+}
+
+/* ”迷ってしまう夜も〜”から始まる説明部分*/
+.description {
+  font-size: 17px;
+  line-height: 2;
+  color: #ffffff;
+  padding-top: 25px;
+}
+
+/* ボタン */
+.home button {
+  display: inline-block;
+  width: 230px;
+  /* text-align: center; */
+  /* text-decoration: none; */
+  font-size: 17px;
+  line-height: 60px;
+  /* outline: none; */
+  color:  #936ea6;
+  background-color: #ffffff;
+  position: relative;
+  border: 0 solid  #936ea6;
+  transition: color 0.5s ease;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 30px;
+  margin-top: 30px;
+}
+.home button:hover {
+  color: #fff;
+}
+.home button:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.home button:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #936ea6;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: all 0.7s ease;
+  transition-property: transform;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.special {
+  color: gold;
+  text-shadow: 0 0 10px rgb(238, 238, 237);
+}
+
+/* 検索欄全体 */
+.genre .search {
+  display: flex;
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto 30px;
+  gap: 10px;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+/* 検索入力欄 */
+.genre .search input {
+  flex: 1;
+  min-width: 0;
+  height: 64px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  background: #292139;
+  color: #ffffff;
+  caret-color: #ffffff;
+  border: 1px solid #3e3553;
+  border-radius: 30px;
+  font-size: 16px;
+}
+
+/* 入力前の案内文字 */
+.genre .search input::placeholder {
+  color: #91899e;
+  margin-top: 20px;
+}
+
+/* 検索ボタン */
+.genre .search button {
+  flex: 0 0 60px;
+  width: 55px;
+  height: 50px;
+  padding: 0;
+  box-sizing: border-box;
+  background: #292139;
+  color: #e2ddfb;
+  border: 1px solid #302843;
+  border-radius: 10px;
+  font-size: 20px;
+  box-shadow: none;
+}
+
+.genre {
+  display: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-flow: row;
+  gap: 20px;
+  width: calc(100% - 32px);
+  max-width: 500px;
+  margin: 0 auto;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.genre button {
+  width: 100%;
+  min-height: 70px;
+  padding: 16px 8px;
+  box-sizing: border-box;
+  background-color: #17131f;
+  color: #ffffff;
+  border: 1px solid #393047;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow:
+    0 5px 12px rgba(43, 74, 114, 0.4),
+    0 0 10px rgba(150, 137, 218, 0.15);
+  transition: all 0.3s ease;
+}
+
+.genre button:hover {
+  background-color: #292139;
+  border-color: #9689da;
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.4),
+    0 0 14px rgba(150, 137, 218, 0.25);
+}
+
+.genre button:active {
+  transform: translateY(-1px);
+}
+
+/* 抽選ボタン */
+.genre .draw-button {
+  grid-column: 1 / -1;
+  background: #1c1b1b;
+  color: #D9C49B;
+  border: 1px solid #434339;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  box-shadow: 0 0 8px rgb(81, 80, 80);
+}
+
+.anime-list {
+  display: none;
+}
+
+.anime-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 32px);
+  margin: 20px auto 24px;
+}
+
+.anime-list-header h5 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+#backButton {
+  padding: 10px 16px;
+  background: #292139;
+  color: #ffffff;
+  border: 1px solid #393047;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.anime-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  width: calc(100% - 32px);
+  max-width: 600px;
+  margin: 24px auto 0;
+}
+
+.anime-card {
+  padding: 5px;
+  background: #17131f;
+  border: 1px solid #30283b;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.anime-card h5 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+
+  min-height: calc(1.6em * 3);
+}
+
+/* .anime-card:hover { */
+  /* border-color: #9689da; */
+  /* transform: translateY(-8px) scale(1.03); */
+  /* box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); */
+/* } */
+
+.anime-card {
+  padding: 5px;
+  background: #17131f;
+  border: 1px solid #30283b;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.anime-card h5 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+
+  min-height: calc(1.6em * 3);
+}
+
+/* .anime-card:hover { */
+  /* border-color: #9689da; */
+  /* transform: translateY(-8px) scale(1.03); */
+  /* box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); */
+/* } */
+
+.anime-card {
+  padding: 5px;
+  background: #17131f;
+  border: 1px solid #30283b;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.anime-card h5 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+
+  min-height: calc(1.6em * 3);
+}
+
+/* .anime-card:hover { */
+  /* border-color: #9689da; */
+  /* transform: translateY(-8px) scale(1.03); */
+  /* box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4); */
+/* } */
+
+.anime-poster {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0;
+
+  transition: transform 1s ease, box-shadow 0,3s ease;
+} 
+
+.anime-poster:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+.anime-poster:active {
+  transform: translateY(-1px);
+}
+
+#resultImage {
+  width: 280px;
+  height: 400px;
+  object-fit: contain;
+  display: block;
+  margin-top: 0;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 28px;
+}
+
+/* 検索結果の表示エリア */
+#searchResult {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+/* サーチしたあとの戻るボタン */
+.genre #searchBackButton {
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  min-height: 42px;
+  padding: 0;
+  margin: -55px 0 16px 0;
+
+  background: #292139;
+  color: #fff;
+  border: 1px solid #393047;
+  border-radius: 50%;
+
+  font-size: 15px;
+  cursor: pointer;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 検索結果の画像 */
+#searchImage {
+  display: block;
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  margin: 15px auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+#searchImage,
+#resultImage {
+  display: none;
+}
+
+.anime-detail {
+  display: none;
+  width: calc(100% - 32px);
+  max-width: 500px;
+  margin: 20px auto;
+  color: #fff;
+  text-align: center;
+}
+
+#detailBackButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 24px;
+  padding: 0;
+  background: #292139;
+  color: #fff;
+  border: 1px solid #393047;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+#detailTitle {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+#detailImage {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.detail-synopsis {
+  width: 100%;
+  max-width: 350px;
+  margin: 24px auto 0;
+  padding: 0 8px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+#detailSynopsis {
+  margin: 0;
+  color: rgb(123, 119, 119);
+  font-size: 15px;
+  line-height: 1.9;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* 全文表示 */
+#detailSynopsis.is-expanded {
+  display: block;
+  overflow: visible;
+}
+
+#synopsisToggle {
+  color: #ffffff;
+  background-color: rgb(15, 3, 18);
+  border: rgb(15, 3, 18);
+}
+
+#watchedButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 280px;
+  min-height: 54px;
+  margin: 24px auto 0;
+  padding: 12px 20px;
+
+  background: linear-gradient(135deg, #39304f, #211a30);
+  color: #ffffff;
+
+  border: 1px solid #71618f;
+  border-radius: 12px;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #watchedButton:hover {
+    background: linear-gradient(135deg, #51436f, #302442);
+    border-color: #9689da;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(150, 137, 218, 0.2);
+  }
+}
+
+#watchedButton.is-added {
+  background: linear-gradient(135deg, #315d48, #203d30);
+  border-color: #6aab85;
+}
+
+.downRoad {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+
+  /* 画像を黒くして、色を反転させる */
+  filter: brightness(0) invert(1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
